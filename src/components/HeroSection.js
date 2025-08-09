@@ -34,7 +34,7 @@ const HeroSection = () => {
       </div>
 
       {/* Contenido principal */}
-      <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-md rounded-3xl shadow-2xl max-w-3xl mx-auto border border-white/80">
+      <div className="relative z-10 text-center p-20 bg-white/60 backdrop-blur-md rounded-3xl shadow-2xl max-w-5xl mx-auto border border-white/80">
         <motion.h2
           className="text-5xl md:text-6xl font-extrabold text-purple-900 mb-4 leading-tight drop-shadow-lg"
           initial={{ y: 50, opacity: 0 }}
