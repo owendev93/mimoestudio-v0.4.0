@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="font-sans antialiased text-gray-900">
       <Header />
-      <main>
+      <main >
         <HeroSection />
         <GallerySection />
         <AboutSection /> {/* Añadir la nueva sección aquí */}

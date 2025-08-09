@@ -5,7 +5,7 @@ import { Camera, Menu } from 'lucide-react';
 const Header = () => {
   return (
     <motion.header
-      className="bg-gradient-to-r from-pink-100 to-purple-100 p-6 shadow-lg"
+      className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-pink-100 to-purple-100 p-6 shadow-lg"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
