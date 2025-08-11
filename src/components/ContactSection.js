@@ -87,17 +87,17 @@ const ContactSection = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d230.95508798984176!2d-80.42445959657603!3d22.153357725608934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2suy!4v1754951012301!5m2!1ses!2suy"
+              src="https://www.google.com/maps?q=22.1533577,-80.4244596&z=15&hl=es&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
-              allowFullScreen=""
+              allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Ubicación del estudio"
               className="w-full h-full"
             ></iframe>
-            <div className="absolute inset-0 bg-purple-500/20 flex items-center justify-center">
+            <div className="absolute inset-0 bg-purple-500/20 flex items-center justify-center pointer-events-none">
               <p className="text-white text-2xl font-bold">¡Visítanos!</p>
             </div>
           </motion.div>
