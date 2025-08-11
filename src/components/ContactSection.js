@@ -7,7 +7,7 @@ const ContactSection = () => {
     <section id="contact" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-5xl font-extrabold text-center text-purple-800 mb-12"
+          className="text-7xl font-extrabold text-center text-purple-800 mb-12"
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -86,11 +86,17 @@ const ContactSection = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <img
-              src="https://via.placeholder.com/800x600/F0F0F0/808080?text=Mapa+o+Imagen"
-              alt="Ubicación del estudio"
-              className="w-full h-full object-cover"
-            />
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d230.95508798984176!2d-80.42445959657603!3d22.153357725608934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2suy!4v1754951012301!5m2!1ses!2suy"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ubicación del estudio"
+              className="w-full h-full"
+            ></iframe>
             <div className="absolute inset-0 bg-purple-500/20 flex items-center justify-center">
               <p className="text-white text-2xl font-bold">¡Visítanos!</p>
             </div>
