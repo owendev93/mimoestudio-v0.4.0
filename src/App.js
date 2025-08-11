@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { User } from "lucide-react";
 import { FiMail } from "react-icons/fi";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaWhatsappSquare} from "react-icons/fa";
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import GallerySection from './components/GallerySection';
@@ -83,6 +83,10 @@ const App = () => {
                   <a href="https://github.com/owenpuerta" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-purple-700">
                     <FaGithub size={18} />
                     github.com/owenpuerta
+                  </a>
+                  <a href="https://wa.me/59891602640" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-purple-700">
+                    <FaWhatsappSquare size={18} />
+                    +598 91602640
                   </a>
                 </div>
                 <button
