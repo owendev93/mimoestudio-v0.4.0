@@ -7,7 +7,7 @@ const AboutSection = () => {
     <section id="about" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
       <div className="container mx-auto px-4 max-w-5xl">
         <motion.h2
-          className="text-5xl font-extrabold text-center text-purple-800 mb-12"
+          className="text-7xl font-extrabold text-center text-purple-800 mb-10"
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -16,7 +16,7 @@ const AboutSection = () => {
           Sobre <span className="text-pink-600">Nosotros</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           {/* Sección del Estudio */}
           <motion.div
             className="bg-white/80 backdrop-blur-md rounded-3xl p-10 shadow-2xl border border-gray-100"
@@ -52,7 +52,7 @@ const AboutSection = () => {
           >
             <div className="flex items-center space-x-4 mb-6">
               <User className="w-12 h-12 text-purple-500" />
-              <h3 className="text-3xl font-bold text-pink-800">La Fotógrafa: [Tu Nombre]</h3>
+              <h3 className="text-3xl font-bold text-pink-800">La Fotógrafa: Merlin Puerta Sauto</h3>
             </div>
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-6">
               <img
@@ -61,7 +61,7 @@ const AboutSection = () => {
                 className="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-pink-200"
               />
               <p className="text-gray-700 text-lg leading-relaxed">
-                Hola, soy [Tu Nombre], la mente y el corazón detrás de MiMO Estudio. Mi pasión por la fotografía
+                Hola, soy Merlin Puerta Sauto, la mente y el corazón detrás de MiMO Estudio. Mi pasión por la fotografía
                 nació de la necesidad de capturar la belleza efímera de la vida. Cada clic es una oportunidad
                 para congelar un sentimiento, una sonrisa, una mirada.
               </p>
