@@ -23,10 +23,10 @@ const GallerySection = () => {
   };
 
   return (
-    <section id="gallery" className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
+    <section id="gallery" className="py-10 bg-gradient-to-br from-purple-50 to-pink-50">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-5xl font-extrabold text-center text-purple-800 mb-12"
+          className="text-7xl font-extrabold text-center text-purple-800 mb-20"
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -35,13 +35,13 @@ const GallerySection = () => {
           Nuestra <span className="text-pink-600">Galería</span>
         </motion.h2>
 
-        <div className="relative max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl bg-white border border-gray-100">
+        <div className="relative max-w-8xl mx-auto rounded-3xl overflow-hidden shadow-4xl bg-white border border-gray-100">
           <AnimatePresence initial={false} mode="wait">
             <motion.img
               key={currentIndex}
               src={images[currentIndex]}
               alt={`Galería ${currentIndex + 1}`}
-              className="w-full h-96 object-cover"
+              className="w-full h-[50rem] object-cover"
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
