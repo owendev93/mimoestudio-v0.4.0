@@ -115,7 +115,7 @@ const ContactSection = () => {
                 <h3 className="text-2xl font-bold text-purple-800 mb-4">Síguenos en redes</h3>
                 <div className="flex space-x-6">
                   <motion.a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/mimo_estudiofotografico?igsh=MXVnMTllOTdsbHExMA=="
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-purple-600 hover:text-pink-500 transition-colors duration-300"
@@ -125,7 +125,7 @@ const ContactSection = () => {
                     <Instagram className="w-10 h-10" />
                   </motion.a>
                   <motion.a
-                    href="https://facebook.com"
+                    href="https://www.facebook.com/profile.php?id=61551011192876&mibextid=ZbWKwL"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-purple-600 hover:text-pink-500 transition-colors duration-300"
