@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Image as ImageIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
-  'https://via.placeholder.com/800x600/FCE7F3/9C27B0?text=Retratos+Profesionales',
-  'https://via.placeholder.com/800x600/EADFF8/673AB7?text=Eventos+Especiales',
-  'https://via.placeholder.com/800x600/FCE7F3/9C27B0?text=Fotografía+de+Producto',
-  'https://via.placeholder.com/800x600/EADFF8/673AB7?text=Sesiones+Familiares',
-  'https://via.placeholder.com/800x600/FCE7F3/9C27B0?text=Paisajes+Artísticos',
-  'https://via.placeholder.com/800x600/EADFF8/673AB7?text=Moda+y+Estilo',
+  '/image/image1.jpg',
+  '/image/image2.jpg',
+  '/image/image3.jpg',
+  '/image/image4.jpg',
+  '/image/image5.jpg',
+  '/image/image6.jpg',
 ];
 
 const GallerySection = () => {
