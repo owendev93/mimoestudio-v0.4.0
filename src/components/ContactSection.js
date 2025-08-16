@@ -2,43 +2,46 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Instagram, Facebook, Star } from 'lucide-react';
 
+const API_URL = "http://localhost:4000/opinions";
+
 const ContactSection = () => {
-  const [opinions, setOpinions] = useState(() => {
-    const saved = localStorage.getItem('opinions');
-    return saved
-      ? JSON.parse(saved)
-      : [
-          { name: "Ana", comment: "¡Excelente atención y fotos hermosas!", rating: 5 },
-          { name: "Luis", comment: "Muy profesionales y amables.", rating: 4 },
-          { name: "María", comment: "Me encantó el resultado final.", rating: 5 },
-        ];
-  });
+  const [opinions, setOpinions] = useState([]);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
 
-  // Guarda las opiniones en localStorage cada vez que cambian
+  // Cargar opiniones desde la API
   useEffect(() => {
-    localStorage.setItem('opinions', JSON.stringify(opinions));
-  }, [opinions]);
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => setOpinions(data.reverse())); // Mostrar las más recientes arriba
+  }, []);
 
+  // Calcular promedio
   const average =
     opinions.length > 0
       ? (opinions.reduce((acc, op) => acc + op.rating, 0) / opinions.length).toFixed(1)
       : 0;
 
-  const handleSubmit = (e) => {
+  // Enviar nueva opinión a la API
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name.trim() || !comment.trim() || rating === 0) return;
-    setOpinions([
-      ...opinions,
-      { name: name.trim(), comment: comment.trim(), rating }
-    ]);
+    const newOpinion = { name: name.trim(), comment: comment.trim(), rating };
+    await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newOpinion)
+    });
     setName('');
     setComment('');
     setRating(0);
     setHoverRating(0);
+    // Recargar opiniones
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => setOpinions(data.reverse()));
   };
 
   return (
