@@ -12,11 +12,20 @@ const ContactSection = () => {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
 
-  // Cargar opiniones desde la API
+  // Función para cargar opiniones desde la API
+  const loadOpinions = async () => {
+    try {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error(`Error al cargar opiniones: ${res.status}`);
+      const data = await res.json();
+      setOpinions(data.reverse());
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
-    fetch(API_URL)
-      .then(res => res.json())
-      .then(data => setOpinions(data.reverse())); // Mostrar las más recientes arriba
+    loadOpinions();
   }, []);
 
   // Calcular promedio
@@ -29,20 +38,30 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name.trim() || !comment.trim() || rating === 0) return;
+
     const newOpinion = { name: name.trim(), comment: comment.trim(), rating };
-    await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newOpinion)
-    });
-    setName('');
-    setComment('');
-    setRating(0);
-    setHoverRating(0);
-    // Recargar opiniones
-    fetch(API_URL)
-      .then(res => res.json())
-      .then(data => setOpinions(data.reverse()));
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newOpinion)
+      });
+
+      if (!res.ok) throw new Error(`Error al enviar opinión: ${res.status}`);
+
+      // Limpiar formulario
+      setName('');
+      setComment('');
+      setRating(0);
+      setHoverRating(0);
+
+      // Recargar opiniones
+      await loadOpinions();
+    } catch (err) {
+      console.error(err);
+      alert("No se pudo enviar la opinión. Intenta nuevamente.");
+    }
   };
 
   return (
@@ -57,9 +76,11 @@ const ContactSection = () => {
         >
           Contáctanos <span className="text-pink-600">Ahora</span>
         </motion.h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Columna izquierda: Ponte en contacto + Mapa */}
+          {/* Columna izquierda */}
           <div className="flex flex-col h-full">
+            {/* Contacto */}
             <motion.div
               className="bg-white/80 backdrop-blur-md rounded-3xl p-10 shadow-2xl border border-gray-100 flex flex-col"
               initial={{ x: -100, opacity: 0 }}
@@ -94,7 +115,7 @@ const ContactSection = () => {
                   <SiWhatsapp className="w-8 h-8 text-pink-500" />
                   <div>
                     <p className="text-gray-600 text-lg">Whatsapp:</p>
-                    <a href="https://wa.me/+53 5 8525259" className="text-purple-700 text-xl font-medium hover:underline">
+                    <a href="https://wa.me/+5358525259" className="text-purple-700 text-xl font-medium hover:underline">
                       +53 5 8525259
                     </a>
                   </div>
@@ -115,7 +136,7 @@ const ContactSection = () => {
                 <h3 className="text-2xl font-bold text-purple-800 mb-4">Síguenos en redes</h3>
                 <div className="flex space-x-6">
                   <motion.a
-                    href="https://www.instagram.com/mimo_estudiofotografico?igsh=MXVnMTllOTdsbHExMA=="
+                    href="https://www.instagram.com/mimo_estudiofotografico/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-purple-600 hover:text-pink-500 transition-colors duration-300"
@@ -125,7 +146,7 @@ const ContactSection = () => {
                     <Instagram className="w-10 h-10" />
                   </motion.a>
                   <motion.a
-                    href="https://www.facebook.com/profile.php?id=61551011192876&mibextid=ZbWKwL"
+                    href="https://www.facebook.com/profile.php?id=61551011192876"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-purple-600 hover:text-pink-500 transition-colors duration-300"
@@ -137,7 +158,7 @@ const ContactSection = () => {
                 </div>
               </div>
             </motion.div>
-            {/* Mapa debajo */}
+            {/* Mapa */}
             <div className="mt-10 flex-1 flex flex-col">
               <h3 className="text-2xl font-bold text-purple-800 mb-4 text-center">Ubicación</h3>
               <iframe
@@ -153,6 +174,7 @@ const ContactSection = () => {
               ></iframe>
             </div>
           </div>
+
           {/* Columna derecha: Opiniones */}
           <motion.div
             className="bg-white/80 backdrop-blur-md rounded-3xl p-10 shadow-2xl border border-gray-100 flex flex-col h-full"
@@ -194,7 +216,7 @@ const ContactSection = () => {
                 </div>
               ))}
             </div>
-            {/* Formulario para nueva opinión */}
+            {/* Formulario */}
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
               <input
                 type="text"
@@ -228,6 +250,7 @@ const ContactSection = () => {
               <button
                 type="submit"
                 className="bg-purple-700 text-white rounded px-4 py-2 font-semibold hover:bg-purple-800 transition"
+                onClick={handleSubmit} // opcional para asegurar que se llame
                 disabled={!name.trim() || !comment.trim() || rating === 0}
               >
                 Enviar opinión
