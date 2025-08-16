@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Instagram, Facebook, Star } from 'lucide-react';
+import { SiWhatsapp } from 'react-icons/si';
 
 const API_URL = "http://localhost:4000/opinions";
 
@@ -83,8 +84,18 @@ const ContactSection = () => {
                   <Phone className="w-8 h-8 text-pink-500" />
                   <div>
                     <p className="text-gray-600 text-lg">Teléfono:</p>
-                    <a href="tel:+1234567890" className="text-purple-700 text-xl font-medium hover:underline">
-                      +1 (234) 567-890
+                    <a className="text-purple-700 text-xl font-medium hover:underline">
+                      +53 5 8525259
+                    </a>
+                  </div>
+                </div>
+                {/* Whatsapp */}
+                <div className="flex items-center space-x-4">
+                  <SiWhatsapp className="w-8 h-8 text-pink-500" />
+                  <div>
+                    <p className="text-gray-600 text-lg">Whatsapp:</p>
+                    <a href="https://wa.me/+53 5 8525259" className="text-purple-700 text-xl font-medium hover:underline">
+                      +53 5 8525259
                     </a>
                   </div>
                 </div>
