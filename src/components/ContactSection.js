@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Instagram, Facebook, Star } from 'lucide-react';
 
 const ContactSection = () => {
-  const [opinions, setOpinions] = useState([
-    { name: "Ana", comment: "¡Excelente atención y fotos hermosas!", rating: 5 },
-    { name: "Luis", comment: "Muy profesionales y amables.", rating: 4 },
-    { name: "María", comment: "Me encantó el resultado final.", rating: 5 },
-  ]);
+  const [opinions, setOpinions] = useState(() => {
+    const saved = localStorage.getItem('opinions');
+    return saved
+      ? JSON.parse(saved)
+      : [
+          { name: "Ana", comment: "¡Excelente atención y fotos hermosas!", rating: 5 },
+          { name: "Luis", comment: "Muy profesionales y amables.", rating: 4 },
+          { name: "María", comment: "Me encantó el resultado final.", rating: 5 },
+        ];
+  });
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
+
+  // Guarda las opiniones en localStorage cada vez que cambian
+  useEffect(() => {
+    localStorage.setItem('opinions', JSON.stringify(opinions));
+  }, [opinions]);
 
   const average =
     opinions.length > 0
