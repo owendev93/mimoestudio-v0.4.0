@@ -3,18 +3,33 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Instagram, Facebook, Star } from 'lucide-react';
 
 const ContactSection = () => {
-  // Estado inicial para opiniones (ejemplo)
   const [opinions, setOpinions] = useState([
     { name: "Ana", comment: "¡Excelente atención y fotos hermosas!", rating: 5 },
     { name: "Luis", comment: "Muy profesionales y amables.", rating: 4 },
     { name: "María", comment: "Me encantó el resultado final.", rating: 5 },
   ]);
+  const [name, setName] = useState('');
+  const [comment, setComment] = useState('');
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
 
-  // Calcular promedio de estrellas
   const average =
     opinions.length > 0
       ? (opinions.reduce((acc, op) => acc + op.rating, 0) / opinions.length).toFixed(1)
       : 0;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name.trim() || !comment.trim() || rating === 0) return;
+    setOpinions([
+      ...opinions,
+      { name: name.trim(), comment: comment.trim(), rating }
+    ]);
+    setName('');
+    setComment('');
+    setRating(0);
+    setHoverRating(0);
+  };
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
@@ -114,7 +129,7 @@ const ContactSection = () => {
               ></iframe>
             </div>
           </div>
-          {/* Columna derecha: Opiniones a todo lo largo */}
+          {/* Columna derecha: Opiniones */}
           <motion.div
             className="bg-white/80 backdrop-blur-md rounded-3xl p-10 shadow-2xl border border-gray-100 flex flex-col h-full"
             initial={{ x: 100, opacity: 0 }}
@@ -155,31 +170,41 @@ const ContactSection = () => {
                 </div>
               ))}
             </div>
-            {/* Formulario para nueva opinión (estructura básica) */}
-            <form className="flex flex-col gap-4">
+            {/* Formulario para nueva opinión */}
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
               <input
                 type="text"
                 placeholder="Tu nombre"
                 className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-300"
+                value={name}
+                onChange={e => setName(e.target.value)}
               />
               <textarea
                 placeholder="Tu opinión"
                 className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-300"
                 rows={3}
+                value={comment}
+                onChange={e => setComment(e.target.value)}
               />
               <div className="flex items-center gap-2">
                 <span className="text-lg">Tu puntuación:</span>
-                {/* Aquí irán las estrellas seleccionables */}
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className="w-6 h-6 cursor-pointer text-gray-300 hover:text-yellow-400"
+                    className={`w-6 h-6 cursor-pointer transition-colors duration-150 ${
+                      (hoverRating || rating) > i ? 'text-yellow-400' : 'text-gray-300'
+                    }`}
+                    fill={(hoverRating || rating) > i ? '#facc15' : 'none'}
+                    onMouseEnter={() => setHoverRating(i + 1)}
+                    onMouseLeave={() => setHoverRating(0)}
+                    onClick={() => setRating(i + 1)}
                   />
                 ))}
               </div>
               <button
                 type="submit"
                 className="bg-purple-700 text-white rounded px-4 py-2 font-semibold hover:bg-purple-800 transition"
+                disabled={!name.trim() || !comment.trim() || rating === 0}
               >
                 Enviar opinión
               </button>
