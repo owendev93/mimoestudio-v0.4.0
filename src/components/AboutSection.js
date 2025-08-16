@@ -30,10 +30,11 @@ const AboutSection = () => {
               <h3 className="text-3xl font-bold text-purple-800">MiMO Estudio</h3>
             </div>
             <p className="text-gray-700 text-lg leading-relaxed mb-4">
-              En MiMO Estudio, creemos que cada momento es una obra de arte esperando ser capturada.
-              Somos un espacio dedicado a la fotografía con pasión, creatividad y un toque personal.
-              Desde retratos íntimos hasta eventos vibrantes, nuestro objetivo es inmortalizar tus
-              recuerdos más preciados con una estética única y emotiva.
+              En Mi’MO Estudio Fotográfico cada sesión se vive como una experiencia especial. Somos
+              un equipo pequeño y joven, lleno de paciencia para acompañar a los más pequeños y de 
+              dedicación para brindar a cada familia un rato agradable, lleno de sonrisas y confianza. 
+              Nuestro mayor propósito es capturar la esencia de la infancia y la magia de los momentos 
+              en familia, transformándolos en recuerdos que perduren para siempre.
             </p>
             <p className="text-gray-700 text-lg leading-relaxed">
               Utilizamos la última tecnología y técnicas innovadoras para asegurar que cada imagen
