@@ -56,16 +56,18 @@ const AboutSection = () => {
             </div>
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-6">
               <img
-                src="https://via.placeholder.com/150/FCE7F3/9C27B0?text=Tu+Foto"
+                src="image/imgmerlu1.png"
                 alt="Fotógrafa del estudio"
                 className="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-pink-200"
               />
               <p className="text-gray-700 text-lg leading-relaxed">
-                Hola, soy Merlin Puerta Sauto, la mente y el corazón detrás de MiMO Estudio. Mi pasión por la fotografía
-                nació de la necesidad de capturar la belleza efímera de la vida. Cada clic es una oportunidad
-                para congelar un sentimiento, una sonrisa, una mirada.
+                Hola, soy Merlin Puerta Sauto, la mente y el corazón detrás de MiMO Estudio. 
               </p>
             </div>
+            <p className="text-gray-700 text-lg leading-relaxed mb-4">
+              Mi pasión por la fotografía nació de la necesidad de capturar la belleza efímera de la vida. 
+              Cada clic es una oportunidad para congelar un sentimiento, una sonrisa, una mirada.
+            </p>
             <p className="text-gray-700 text-lg leading-relaxed">
               Con años de experiencia y un ojo entrenado para el detalle, me especializo en crear imágenes
               que no solo son visualmente atractivas, sino que también evocan emociones profundas. Me encanta
