@@ -41,7 +41,7 @@ const HeroSection = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          Capturando tus momentos más <span className="text-pink-600">preciados</span>
+          Capturando tus momentos más <span className="text-pink-600">dulces...</span>
         </motion.h2>
         <motion.p
           className="text-xl md:text-2xl text-gray-700 mb-8 font-light"
