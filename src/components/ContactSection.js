@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Instagram, Facebook, Star } from 'lucide-react';
 import { SiWhatsapp } from 'react-icons/si';
 
-const API_URL = "https://opinionbloq-api-v0-1.vercel.app/opinions";
+const API_URL = "https://opinionbloq-api-v0-1.vercel.app/api/opinions";
 
 const ContactSection = () => {
   const [opinions, setOpinions] = useState([]);
