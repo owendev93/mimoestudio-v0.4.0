@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Instagram, Facebook, Star } from 'lucide-react';
 import { SiWhatsapp } from 'react-icons/si';
-import { supabase } from '../supabaseClient';
+
+import { supabase } from "../supabaseClient";
 
 const ContactSection = () => {
   const [opinions, setOpinions] = useState([]);
@@ -12,17 +12,15 @@ const ContactSection = () => {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
 
+  // Función para cargar opiniones desde la API
   const loadOpinions = async () => {
     try {
-      const { data, error } = await supabase
-        .from('comentarios')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(10);
-      if (error) throw error;
-      setOpinions(data);
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error(`Error al cargar opiniones: ${res.status}`);
+      const data = await res.json();
+      setOpinions(data.reverse());
     } catch (err) {
-      console.error('Error al cargar opiniones:', err.message);
+      console.error(err);
     }
   };
 
@@ -30,33 +28,39 @@ const ContactSection = () => {
     loadOpinions();
   }, []);
 
+  // Calcular promedio
   const average =
     opinions.length > 0
-      ? (opinions.reduce((acc, op) => acc + op.puntuacion, 0) / opinions.length).toFixed(1)
+      ? (opinions.reduce((acc, op) => acc + op.rating, 0) / opinions.length).toFixed(1)
       : 0;
 
+  // Enviar nueva opinión a la API
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name.trim() || !comment.trim() || rating === 0) return;
 
-    const newOpinion = {
-      nombre: name.trim(),
-      descripcion: comment.trim(),
-      puntuacion: rating,
-    };
+    const newOpinion = { name: name.trim(), comment: comment.trim(), rating };
 
     try {
-      const { error } = await supabase.from('comentarios').insert([newOpinion]);
-      if (error) throw error;
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newOpinion)
+      });
 
+      if (!res.ok) throw new Error(`Error al enviar opinión: ${res.status}`);
+
+      // Limpiar formulario
       setName('');
       setComment('');
       setRating(0);
       setHoverRating(0);
+
+      // Recargar opiniones
       await loadOpinions();
     } catch (err) {
-      console.error('Error al enviar opinión:', err.message);
-      alert('No se pudo enviar la opinión. Intenta nuevamente.');
+      console.error(err);
+      alert("No se pudo enviar la opinión. Intenta nuevamente.");
     }
   };
 
@@ -74,7 +78,9 @@ const ContactSection = () => {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          {/* Columna izquierda */}
           <div className="flex flex-col h-full">
+            {/* Contacto */}
             <motion.div
               className="bg-white/80 backdrop-blur-md rounded-3xl p-10 shadow-2xl border border-gray-100 flex flex-col"
               initial={{ x: -100, opacity: 0 }}
@@ -84,6 +90,7 @@ const ContactSection = () => {
             >
               <h3 className="text-3xl font-bold text-purple-800 mb-6">Ponte en contacto</h3>
               <div className="space-y-6">
+                {/* Email */}
                 <div className="flex items-center space-x-4">
                   <Mail className="w-8 h-8 text-pink-500" />
                   <div>
@@ -93,6 +100,7 @@ const ContactSection = () => {
                     </a>
                   </div>
                 </div>
+                {/* Teléfono */}
                 <div className="flex items-center space-x-4">
                   <Phone className="w-8 h-8 text-pink-500" />
                   <div>
@@ -102,6 +110,7 @@ const ContactSection = () => {
                     </a>
                   </div>
                 </div>
+                {/* Whatsapp */}
                 <div className="flex items-center space-x-4">
                   <SiWhatsapp className="w-8 h-8 text-pink-500" />
                   <div>
@@ -111,6 +120,7 @@ const ContactSection = () => {
                     </a>
                   </div>
                 </div>
+                {/* Dirección */}
                 <div className="flex items-center space-x-4">
                   <MapPin className="w-8 h-8 text-pink-500" />
                   <div>
@@ -121,6 +131,7 @@ const ContactSection = () => {
                   </div>
                 </div>
               </div>
+              {/* Redes sociales */}
               <div className="mt-10">
                 <h3 className="text-2xl font-bold text-purple-800 mb-4">Síguenos en redes</h3>
                 <div className="flex space-x-6">
@@ -147,6 +158,7 @@ const ContactSection = () => {
                 </div>
               </div>
             </motion.div>
+            {/* Mapa */}
             <div className="mt-10 flex-1 flex flex-col">
               <h3 className="text-2xl font-bold text-purple-800 mb-4 text-center">Ubicación</h3>
               <iframe
@@ -163,6 +175,7 @@ const ContactSection = () => {
             </div>
           </div>
 
+          {/* Columna derecha: Opiniones */}
           <motion.div
             className="bg-white/80 backdrop-blur-md rounded-3xl p-10 shadow-2xl border border-gray-100 flex flex-col h-full"
             initial={{ x: 100, opacity: 0 }}
@@ -171,6 +184,7 @@ const ContactSection = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <h3 className="text-3xl font-bold text-purple-800 mb-4">Opiniones de nuestros clientes</h3>
+            {/* Promedio de estrellas */}
             <div className="flex items-center mb-4">
               <span className="text-xl font-semibold mr-2">Promedio:</span>
               <div className="flex items-center">
@@ -184,8 +198,9 @@ const ContactSection = () => {
                 <span className="ml-2 text-lg text-purple-700 font-bold">{average}</span>
               </div>
             </div>
+            {/* Últimas 3 opiniones */}
             <div className="space-y-4 mb-6">
-              {opinions.slice(0, 4).map((op, idx) => (
+              {opinions.slice(-3).reverse().map((op, idx) => (
                 <div key={idx} className="bg-purple-50 rounded-xl p-4 shadow flex flex-col">
                   <div className="flex items-center mb-1">
                     <span className="font-semibold text-purple-800 mr-2">{op.nombre}</span>
@@ -201,6 +216,7 @@ const ContactSection = () => {
                 </div>
               ))}
             </div>
+            {/* Formulario */}
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
               <input
                 type="text"
@@ -234,6 +250,7 @@ const ContactSection = () => {
               <button
                 type="submit"
                 className="bg-purple-700 text-white rounded px-4 py-2 font-semibold hover:bg-purple-800 transition"
+                onClick={handleSubmit} // opcional para asegurar que se llame
                 disabled={!name.trim() || !comment.trim() || rating === 0}
               >
                 Enviar opinión
