@@ -20,7 +20,7 @@ const ContactSection = () => {
         .order('created_at', { ascending: false })
         .limit(10);
       if (error) throw error;
-      setOpinions(data.reverse());
+      setOpinions(data);
     } catch (err) {
       console.error('Error al cargar opiniones:', err.message);
     }
@@ -74,9 +74,7 @@ const ContactSection = () => {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Columna izquierda */}
           <div className="flex flex-col h-full">
-            {/* Contacto */}
             <motion.div
               className="bg-white/80 backdrop-blur-md rounded-3xl p-10 shadow-2xl border border-gray-100 flex flex-col"
               initial={{ x: -100, opacity: 0 }}
@@ -99,7 +97,9 @@ const ContactSection = () => {
                   <Phone className="w-8 h-8 text-pink-500" />
                   <div>
                     <p className="text-gray-600 text-lg">Teléfono:</p>
-                    <a className="text-purple-700 text-xl font-medium hover:underline">+53 5 8525259</a>
+                    <a className="text-purple-700 text-xl font-medium hover:underline">
+                      +53 5 8525259
+                    </a>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
@@ -115,7 +115,9 @@ const ContactSection = () => {
                   <MapPin className="w-8 h-8 text-pink-500" />
                   <div>
                     <p className="text-gray-600 text-lg">Dirección:</p>
-                    <p className="text-purple-700 text-xl font-medium">Calle Falsa 123, Ciudad Imaginaria</p>
+                    <p className="text-purple-700 text-xl font-medium">
+                      Calle Falsa 123, Ciudad Imaginaria
+                    </p>
                   </div>
                 </div>
               </div>
@@ -145,7 +147,6 @@ const ContactSection = () => {
                 </div>
               </div>
             </motion.div>
-            {/* Mapa */}
             <div className="mt-10 flex-1 flex flex-col">
               <h3 className="text-2xl font-bold text-purple-800 mb-4 text-center">Ubicación</h3>
               <iframe
@@ -162,7 +163,6 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Columna derecha: Opiniones y formulario */}
           <motion.div
             className="bg-white/80 backdrop-blur-md rounded-3xl p-10 shadow-2xl border border-gray-100 flex flex-col h-full"
             initial={{ x: 100, opacity: 0 }}
@@ -185,7 +185,7 @@ const ContactSection = () => {
               </div>
             </div>
             <div className="space-y-4 mb-6">
-              {opinions.slice(-3).reverse().map((op, idx) => (
+              {opinions.slice(0, 4).map((op, idx) => (
                 <div key={idx} className="bg-purple-50 rounded-xl p-4 shadow flex flex-col">
                   <div className="flex items-center mb-1">
                     <span className="font-semibold text-purple-800 mr-2">{op.nombre}</span>
