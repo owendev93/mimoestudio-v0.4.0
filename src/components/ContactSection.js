@@ -18,7 +18,7 @@ const ContactSection = () => {
     const { data, error } = await supabase
       .from("comentarios")
       .select("*")
-      .order("created_at", { ascending: false })
+      .order("created_at DESC", { ascending: false })
       .limit(4);
     if (error) throw error;
     setOpinions(data);
