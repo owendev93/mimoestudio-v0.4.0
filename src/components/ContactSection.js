@@ -200,19 +200,19 @@ const ContactSection = () => {
             </div>
             {/* Últimas 3 opiniones */}
             <div className="space-y-4 mb-6">
-              {opinions.slice(-3).reverse().map((op, idx) => (
+              {opinions.slice(-4).reverse().map((op, idx) => (
                 <div key={idx} className="bg-purple-50 rounded-xl p-4 shadow flex flex-col">
                   <div className="flex items-center mb-1">
-                    <span className="font-semibold text-purple-800 mr-2">{op.nombre}</span>
+                    <span className="font-semibold text-purple-800 mr-2">{op.name}</span>
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-4 h-4 ${i < op.puntuacion ? 'text-yellow-400' : 'text-gray-300'}`}
-                        fill={i < op.puntuacion ? '#facc15' : 'none'}
+                        className={`w-4 h-4 ${i < op.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                        fill={i < op.rating ? '#facc15' : 'none'}
                       />
                     ))}
                   </div>
-                  <span className="text-gray-700">{op.descripcion}</span>
+                  <span className="text-gray-700">{op.comment}</span>
                 </div>
               ))}
             </div>
