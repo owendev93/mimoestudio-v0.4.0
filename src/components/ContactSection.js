@@ -17,7 +17,7 @@ const ContactSection = () => {
   const loadOpinions = async () => {
     try {
       const { data, error } = await supabase
-        .from("opinions")
+        .from("comentarios")
         .select("*")
         .order("created_at", { ascending: false })
         .limit(4);
@@ -48,7 +48,7 @@ const ContactSection = () => {
 
     try {
       const { error } = await supabase
-        .from("opinions")
+        .from("comentarios")
         .insert([newOpinion]);
 
       if (error) throw error;
