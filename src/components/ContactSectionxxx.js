@@ -15,13 +15,10 @@ const ContactSection = () => {
   // Función para cargar opiniones desde la API
   const loadOpinions = async () => {
     try {
-    const { data, error } = await supabase
-      .from("comentarios")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(4);
-    if (error) throw error;
-    setOpinions(data);
+      const res = await supabase.from("comentarios").select("*").order("created_at", { ascending: false }).limit(4);
+      if (!res.ok) throw new Error(`Error al cargar opiniones: ${res.status}`);
+      const data = await res.json();
+      setOpinions(data.reverse());
     } catch (err) {
       console.error(err);
     }
@@ -196,7 +193,7 @@ const ContactSection = () => {
             </div>
             {/* Últimas 3 opiniones */}
             <div className="space-y-4 mb-6">
-              {opinions.slice(-3).reverse().map((op, idx) => (
+              {opinions.reverse().map((op, idx) => (
                 <div key={idx} className="bg-purple-50 rounded-xl p-4 shadow flex flex-col">
                   <div className="flex items-center mb-1">
                     <span className="font-semibold text-purple-800 mr-2">{op.name}</span>
