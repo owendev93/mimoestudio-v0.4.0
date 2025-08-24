@@ -173,11 +173,11 @@ const ContactSection = () => {
             {/* Logotipo en lugar del mapa */}
             <div className="mt-10 flex-1 flex flex-col items-center">
               <h3 className="text-2xl font-bold text-purple-800 mb-4 text-center">Nuestra Marca</h3>
-              <div className="w-full h-64 flex items-center justify-center bg-gray-100 rounded-2xl shadow-lg">
+              <div className="w-full h-80 flex items-center justify-center bg-gray-100 rounded-2xl shadow-lg">
                 <img
                   src="/image/logo.png" // Asegúrate de que el logo esté en la carpeta `public`
                   alt="Logotipo de la empresa"
-                  className="max-h-full max-w-full object-contain p-4"
+                  className="h-64 animate-float"
                 />
               </div>
             </div>
