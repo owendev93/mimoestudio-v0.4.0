@@ -14,15 +14,20 @@ const ContactSection = () => {
 
   // Función para cargar opiniones desde la API
   const loadOpinions = async () => {
-    try {
-      const res = await fetch(API_URL);
-      if (!res.ok) throw new Error(`Error al cargar opiniones: ${res.status}`);
-      const data = await res.json();
-      setOpinions(data.reverse());
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  try {
+    const { data, error } = await supabase
+      .from("opinions")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(10); // por si querés limitar la cantidad
+
+    if (error) throw error;
+    setOpinions(data);
+  } catch (err) {
+    console.error("Error al cargar opiniones:", err);
+  }
+};
+
 
   useEffect(() => {
     loadOpinions();
@@ -35,34 +40,31 @@ const ContactSection = () => {
       : 0;
 
   // Enviar nueva opinión a la API
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!name.trim() || !comment.trim() || rating === 0) return;
+  
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!name.trim() || !comment.trim() || rating === 0) return;
 
-    const newOpinion = { name: name.trim(), comment: comment.trim(), rating };
+  const { error } = await supabase
+    .from("opinions") // nombre de tu tabla en Supabase
+    .insert([{ name: name.trim(), comment: comment.trim(), rating }]);
 
-    try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newOpinion)
-      });
+  if (error) {
+    console.error(error);
+    alert("No se pudo enviar la opinión. Intenta nuevamente.");
+    return;
+  }
 
-      if (!res.ok) throw new Error(`Error al enviar opinión: ${res.status}`);
+  // Limpiar formulario
+  setName('');
+  setComment('');
+  setRating(0);
+  setHoverRating(0);
 
-      // Limpiar formulario
-      setName('');
-      setComment('');
-      setRating(0);
-      setHoverRating(0);
+  // Recargar opiniones
+  await loadOpinions();
+};
 
-      // Recargar opiniones
-      await loadOpinions();
-    } catch (err) {
-      console.error(err);
-      alert("No se pudo enviar la opinión. Intenta nuevamente.");
-    }
-  };
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
