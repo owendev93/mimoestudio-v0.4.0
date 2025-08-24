@@ -21,6 +21,7 @@ const ContactSection = () => {
       .order("created_at", { ascending: false })
       .limit(4);
     if (error) throw error;
+    console.log("Opinions data:", data);
     setOpinions(data);
     } catch (err) {
       console.error(err);
