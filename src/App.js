@@ -24,7 +24,7 @@ const App = () => {
       </main>
       <footer className="w-full pb-6 relative">
         <div className="mx-auto my-6 border-t border-purple-700 w-5/6"></div>
-        <div className="flex justify-center items-center gap-x-[80rem] py-2">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-20 px-4 text-center md:text-left py-2">
           <p>&copy; {new Date().getFullYear()} MiMO Estudio. Todos los derechos reservados.</p>
           <p className="relative flex items-center">
             <User className="inline w-5 h-5 mr-2" />
