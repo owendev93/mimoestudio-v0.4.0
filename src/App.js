@@ -32,17 +32,7 @@ const App = () => {
             <span
               onClick={toggleInfo}
               className="
-                cursor-pointer
-                text-gray-900
-                transition
-                duration-300
-                ease-in-out
-                hover:text-purple-700
-                hover:scale-110
-                inline-block
-                select-none
-                ml-1
-              "
+                cursor-pointer text-gray-900 transition duration-300 ease-in-out hover:text-purple-700 hover:scale-110 inline-block select-none ml-1"
             >
               Owen Puerta Sauto
             </span>
@@ -50,23 +40,7 @@ const App = () => {
             {showInfo && (
               <div
                 className="
-                  absolute
-                  bottom-full
-                  right-0
-                  mb-2
-                  bg-white
-                  border
-                  border-purple-700
-                  rounded
-                  shadow-lg
-                  p-6
-                  w-72
-                  z-50
-                  text-sm
-                  text-gray-800
-                  flex
-                  flex-col
-                  gap-3
+                  absolute bottom-full right-0 mb-2 bg-white border border-purple-700 rounded shadow-lg p-6 w-72 z-50 text-sm text-gray-800 flex flex-col gap-3
                 "
               >
                 <h4 className="font-semibold mb-2 border-b border-purple-700 pb-1">Owen Puerta Sauto</h4>
