@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Image as ImageIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const images = [
+const desktopImages = [
   '/image/image1.jpg',
   '/image/image2.jpg',
   '/image/image3.jpg',
@@ -11,8 +11,31 @@ const images = [
   '/image/image6.jpg',
 ];
 
+const mobileImages = [
+  '/image/imgmob1.jpg',
+  '/image/imgmob2.jpg',
+  '/image/imgmob3.jpg',
+  '/image/imgmob4.jpg',
+  '/image/imgmob5.jpg',
+  '/image/imgmob6.jpg',
+];
+
 const GallerySection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar cambio de tamaño de pantalla
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // breakpoint md
+    };
+
+    handleResize(); // ejecutar al cargar
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const images = isMobile ? mobileImages : desktopImages;
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -26,7 +49,7 @@ const GallerySection = () => {
     <section id="gallery" className="py-10 bg-gradient-to-br from-purple-50 to-pink-50">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-7xl font-extrabold text-center text-purple-800 mb-20"
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-center text-purple-800 mb-6 md:mb-16 lg:mb-20"
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -41,7 +64,7 @@ const GallerySection = () => {
               key={currentIndex}
               src={images[currentIndex]}
               alt={`Galería ${currentIndex + 1}`}
-              className="w-full h-[50rem] object-cover"
+              className="w-full h-74 sm:h-80 md:h-[40rem] lg:h-[50rem] object-cover"
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
