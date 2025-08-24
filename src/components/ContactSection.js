@@ -6,7 +6,7 @@ import { SiWhatsapp } from 'react-icons/si';
 import { supabase } from "../supabaseClient";
 
 const ContactSection = () => {
-  const [comentarios, setOpinions] = useState([]);
+  const [opinions, setOpinions] = useState([]);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
@@ -15,7 +15,7 @@ const ContactSection = () => {
   // Función para cargar opiniones desde la API
   const loadOpinions = async () => {
     try {
-      const res = await fetch(API_URL);
+      const res = await supabase.from("comentarios").select("*").order("created_at", { ascending: false }).limit(4);
       if (!res.ok) throw new Error(`Error al cargar opiniones: ${res.status}`);
       const data = await res.json();
       setOpinions(data.reverse());
@@ -30,39 +30,32 @@ const ContactSection = () => {
 
   // Calcular promedio
   const average =
-    comentarios.length > 0
-      ? (comentarios.reduce((acc, op) => acc + op.rating, 0) / comentarios.length).toFixed(1)
+    opinions.length > 0
+      ? (opinions.reduce((acc, op) => acc + op.rating, 0) / opinions.length).toFixed(1)
       : 0;
 
   // Enviar nueva opinión a la API
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!name.trim() || !comment.trim() || rating === 0) return;
+  e.preventDefault();
+  if (!name.trim() || !comment.trim() || rating === 0) return;
 
-    const newOpinion = { name: name.trim(), comment: comment.trim(), rating };
+  const { error } = await supabase
+    .from("comentarios")
+    .insert([{ name: name.trim(), comment: comment.trim(), rating }]);
 
-    try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newOpinion)
-      });
+  if (error) {
+    console.error("Error al enviar opinión:", error.message);
+    alert("No se pudo enviar la opinión. Intenta nuevamente.");
+    return;
+  }
 
-      if (!res.ok) throw new Error(`Error al enviar opinión: ${res.status}`);
+  setName('');
+  setComment('');
+  setRating(0);
+  setHoverRating(0);
 
-      // Limpiar formulario
-      setName('');
-      setComment('');
-      setRating(0);
-      setHoverRating(0);
-
-      // Recargar opiniones
-      await loadOpinions();
-    } catch (err) {
-      console.error(err);
-      alert("No se pudo enviar la opinión. Intenta nuevamente.");
-    }
-  };
+  await loadOpinions();
+};
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
@@ -200,19 +193,19 @@ const ContactSection = () => {
             </div>
             {/* Últimas 3 opiniones */}
             <div className="space-y-4 mb-6">
-              {comentarios.slice(-3).reverse().map((op, idx) => (
+              {opinions.reverse().map((op, idx) => (
                 <div key={idx} className="bg-purple-50 rounded-xl p-4 shadow flex flex-col">
                   <div className="flex items-center mb-1">
-                    <span className="font-semibold text-purple-800 mr-2">{op.nombre}</span>
+                    <span className="font-semibold text-purple-800 mr-2">{op.name}</span>
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-4 h-4 ${i < op.puntuacion ? 'text-yellow-400' : 'text-gray-300'}`}
-                        fill={i < op.puntuacion ? '#facc15' : 'none'}
+                        className={`w-4 h-4 ${i < op.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                        fill={i < op.rating ? '#facc15' : 'none'}
                       />
                     ))}
                   </div>
-                  <span className="text-gray-700">{op.descripcion}</span>
+                  <span className="text-gray-700">{op.comment}</span>
                 </div>
               ))}
             </div>
