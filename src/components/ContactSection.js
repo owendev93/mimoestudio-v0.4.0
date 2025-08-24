@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Instagram, Facebook, Star } from 'lucide-react';
 import { SiWhatsapp } from 'react-icons/si';
-import logo from '../image/logo.png';
 
 import { supabase } from "../supabaseClient";
 
@@ -176,7 +175,7 @@ const ContactSection = () => {
               <h3 className="text-2xl font-bold text-purple-800 mb-4 text-center">Nuestra Marca</h3>
               <div className="w-full h-64 flex items-center justify-center bg-gray-100 rounded-2xl shadow-lg">
                 <img
-                  src="/logo.png" // Asegúrate de que el logo esté en la carpeta `public`
+                  src="/image/logo.png" // Asegúrate de que el logo esté en la carpeta `public`
                   alt="Logotipo de la empresa"
                   className="max-h-full max-w-full object-contain p-4"
                 />
