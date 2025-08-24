@@ -117,7 +117,7 @@ const ContactSection = () => {
                     </a>
                   </div>
                 </div>
-                {/* Dirección */}
+                {/* Dirección 
                 <div className="flex items-center space-x-4">
                   <MapPin className="w-8 h-8 text-pink-500" />
                   <div>
@@ -126,7 +126,7 @@ const ContactSection = () => {
                       Calle Falsa 123, Ciudad Imaginaria
                     </p>
                   </div>
-                </div>
+                </div>*/}
               </div>
               {/* Redes sociales */}
               <div className="mt-10">
