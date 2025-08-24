@@ -196,7 +196,7 @@ const ContactSection = () => {
             </div>
             {/* Últimas 3 opiniones */}
             <div className="space-y-4 mb-6">
-              {opinions.slice(-5).reverse().map((op, idx) => (
+              {opinions.slice(-4).reverse().map((op, idx) => (
                 <div key={idx} className="bg-purple-50 rounded-xl p-4 shadow flex flex-col">
                   <div className="flex items-center mb-1">
                     <span className="font-semibold text-purple-800 mr-2">{op.name}</span>
