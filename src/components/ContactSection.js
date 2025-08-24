@@ -16,10 +16,10 @@ const ContactSection = () => {
   const loadOpinions = async () => {
   try {
     const { data, error } = await supabase
-      .from("opinions")
+      .from("opinions") // Asegurate que este sea el nombre correcto de tu tabla
       .select("*")
       .order("created_at", { ascending: false })
-      .limit(10); // por si querés limitar la cantidad
+      .limit(4); // Solo los últimos 4
 
     if (error) throw error;
     setOpinions(data);
@@ -34,8 +34,7 @@ const ContactSection = () => {
   }, []);
 
   // Calcular promedio
-  const average =
-    opinions.length > 0
+  const average = opinions.length > 0
       ? (opinions.reduce((acc, op) => acc + op.rating, 0) / opinions.length).toFixed(1)
       : 0;
 
@@ -46,11 +45,11 @@ const handleSubmit = async (e) => {
   if (!name.trim() || !comment.trim() || rating === 0) return;
 
   const { error } = await supabase
-    .from("opinions") // nombre de tu tabla en Supabase
+    .from("opinions")
     .insert([{ name: name.trim(), comment: comment.trim(), rating }]);
 
   if (error) {
-    console.error(error);
+    console.error("Error al enviar opinión:", error);
     alert("No se pudo enviar la opinión. Intenta nuevamente.");
     return;
   }
@@ -64,6 +63,7 @@ const handleSubmit = async (e) => {
   // Recargar opiniones
   await loadOpinions();
 };
+
 
 
   return (
