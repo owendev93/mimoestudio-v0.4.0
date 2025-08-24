@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Instagram, Facebook, Star } from 'lucide-react';
 import { SiWhatsapp } from 'react-icons/si';
+import logo from '../image/logo.png';
 
 import { supabase } from "../supabaseClient";
 
