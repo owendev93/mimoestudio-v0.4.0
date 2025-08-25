@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./logo.png" alt="MiMO Estudio" width="400"/>
+  <img src="./public/image/logo.png" alt="MiMO Estudio" width="400"/>
   <h1>📸 MiMO Estudio</h1>
   <p><strong>Estudio Fotográfico - Sitio Web Oficial</strong></p>
 </div>
@@ -44,12 +44,4 @@ El desarrollo fue realizado por **Owen Puerta Sauto**, con un enfoque en **front
 
 ---
 
-## 📂 Estructura del Proyecto
 
-```bash
-src/
- ├── components/     # Componentes reutilizables (Header, Footer, Hero, Gallery, About, etc.)
- ├── pages/          # Vistas principales manejadas por React Router
- ├── assets/         # Imágenes y recursos estáticos
- ├── App.js          # Configuración de rutas
- └── index.js        # Punto de entrada de la app
