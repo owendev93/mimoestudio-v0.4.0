@@ -17,7 +17,7 @@ const Header = () => {
           whileTap={{ scale: 0.95 }}
         >
           <Camera className="w-8 h-8 text-purple-600" />
-          <h1 className="text-3xl font-bold text-purple-800">MiMO Estudio</h1>
+          <h1 className="text-3xl font-bold text-purple-800">Mi'MO Estudio</h1>
         </motion.div>
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
