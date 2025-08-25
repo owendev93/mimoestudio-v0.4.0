@@ -44,4 +44,12 @@ El desarrollo fue realizado por **Owen Puerta Sauto**, con un enfoque en **front
 
 ---
 
+## 👨‍💻 Autor
+
+Desarrollado por Owen Puerta Sauto
+- 💼 Ingeniero en Informática
+- 🚀 Desarrollador Web especializado en React y tecnologías modernas
+- 🔗 LinkedIn
+
+
 
