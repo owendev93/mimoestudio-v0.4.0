@@ -47,9 +47,10 @@ El desarrollo fue realizado por **Owen Puerta Sauto**, con un enfoque en **front
 ## 👨‍💻 Autor
 
 Desarrollado por Owen Puerta Sauto
-- 💼 Ingeniero en Informática
-- 🚀 Desarrollador Web especializado en React y tecnologías modernas
-- 🔗 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/owenpuerta/)
+- 💼 Ingeniero en Informática.
+- 🚀 Desarrollador Web especializado en React y tecnologías modernas.
+- 
+ [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/owenpuerta/)
 
 
 
