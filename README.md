@@ -1,6 +1,6 @@
 <div align="center">
   <img src="./public/image/logo.png" alt="MiMO Estudio" width="400"/>
-  <h1>📸 MiMO Estudio</h1>
+  <h1>📸 Mi'MO Estudio</h1>
   <p><strong>Estudio Fotográfico - Sitio Web Oficial</strong></p>
 </div>
 
@@ -49,7 +49,8 @@ El desarrollo fue realizado por **Owen Puerta Sauto**, con un enfoque en **front
 Desarrollado por Owen Puerta Sauto
 - 💼 Ingeniero en Informática
 - 🚀 Desarrollador Web especializado en React y tecnologías modernas
-- 🔗 LinkedIn
+- 🔗 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/owenpuerta/)
+
 
 
 
