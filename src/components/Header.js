@@ -16,51 +16,38 @@ const Header = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Camera className="w-8 h-8 text-purple-600" />
-          <h1 className="text-3xl font-bold text-purple-800">Mi'MO Estudio</h1>
+          <Camera className="w-11 h-11 text-purple-600" />
+          <h1 className="text-5xl font-epunda text-purple-800">Mi'MO Estudio</h1>
         </motion.div>
         <nav className="hidden md:block">
-          <ul className="flex space-x-8">
-            <li>
-              <motion.a
-                href="#home"
-                className="text-purple-700 hover:text-purple-900 text-lg font-medium transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                Inicio
-              </motion.a>
-            </li>
-            <li>
-              <motion.a
-                href="#gallery"
-                className="text-purple-700 hover:text-purple-900 text-lg font-medium transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                Galería
-              </motion.a>
-            </li>
-            <li>
-              <motion.a
-                href="#about"
-                className="text-purple-700 hover:text-purple-900 text-lg font-medium transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                Sobre Nosotros
-              </motion.a>
-            </li>
-            <li>
-              <motion.a
-                href="#contact"
-                className="text-purple-700 hover:text-purple-900 text-lg font-medium transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                Contacto
-              </motion.a>
-            </li>
+          <ul className="flex space-x-8 font-kaushan">
+            {[
+              { href: "#home", label: "Inicio" },
+              { href: "#gallery", label: "Galería" },
+              { href: "#about", label: "Sobre Nosotros" },
+              { href: "#contact", label: "Contacto" },
+            ].map(({ href, label }) => (
+              <li key={href} className="relative">
+                <motion.a
+                  href={href}
+                  className="relative text-purple-700 hover:text-purple-900 text-3xl font-medium transition-colors duration-300 inline-block"
+                  initial="initial"
+                  whileHover="hover"
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <span>{label}</span>
+                  <motion.div
+                    variants={{
+                      initial: { scaleX: 0 },
+                      hover: { scaleX: 1 },
+                    }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="absolute left-0 -bottom-1 w-full h-0.5 bg-purple-700 origin-left rounded"
+                    style={{ scaleX: 0 }}
+                  />
+                </motion.a>
+              </li>
+            ))}
           </ul>
         </nav>
         <button className="md:hidden text-purple-700">

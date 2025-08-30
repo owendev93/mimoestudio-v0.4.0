@@ -5,9 +5,9 @@ import { Sparkles, Camera, User } from 'lucide-react';
 const AboutSection = () => {
   return (
     <section id="about" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
-      <div className="container mx-auto px-4 max-w-5xl">
+      <div className="container mx-auto px-4 max-w-screen-lg">
         <motion.h2
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-center text-purple-800 mb-6 md:mb-16 lg:mb-20"
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-epunda text-center text-purple-800 mb-6 md:mb-16 lg:mb-20"
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}

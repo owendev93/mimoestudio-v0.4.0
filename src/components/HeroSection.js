@@ -34,9 +34,9 @@ const HeroSection = () => {
       </div>
 
       {/* Contenido principal */}
-      <div className="relative z-10 text-center p-20 bg-white/60 backdrop-blur-md rounded-3xl shadow-2xl max-w-5xl mx-auto border border-white/80">
+      <div className="relative z-10 text-center p-20 bg-white/60 backdrop-blur-md rounded-3xl shadow-2xl max-w-7xl mx-auto border border-white/80">
         <motion.h2
-          className="text-5xl md:text-6xl font-extrabold text-purple-900 mb-4 leading-tight drop-shadow-lg"
+          className="text-7xl md:text-8xl font-epunda text-purple-900 mb-4 leading-tight drop-shadow-lg"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
@@ -44,7 +44,7 @@ const HeroSection = () => {
           Capturando tus momentos más <span className="text-pink-600">dulces...</span>
         </motion.h2>
         <motion.p
-          className="text-xl md:text-2xl text-gray-700 mb-8 font-light"
+          className="text-xl md:text-4xl text-gray-700 mb-8 font-light"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
@@ -53,7 +53,7 @@ const HeroSection = () => {
         </motion.p>
         <motion.a
           href="#gallery"
-          className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto"
+          className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.7, duration: 0.5, type: "spring" }}

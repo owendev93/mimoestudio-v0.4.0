@@ -14,6 +14,11 @@
                     '50%': { transform: 'translateY(-30px)' },
                   },
                 },
+                fontFamily: {
+                  kaushan: ['"Kaushan Script"', 'cursive'],
+                  epunda: ['"Epunda Slab"', 'serif'],
+                  // agrega más fuentes si quieres
+                },
               },
 
         },
