@@ -57,7 +57,7 @@ const HeroSection = () => {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.7, duration: 0.5, type: "spring" }}
-          whileHover={{ rotate: 5 }}
+          whileHover={{ y: -8, transition: { yoyo: Infinity, duration: 0.1 } }}
         >
           <Sparkles className="w-6 h-6 mr-2" />
           Ver Galería
